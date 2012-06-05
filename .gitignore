@@ -1,0 +1,10 @@
+/mtcore
+/WebContent
+/build
+/target
+/.settings
+/.classpath
+/.project
+.mymetadata
+src/main/webapp/WEB-INF/classes/
+logs

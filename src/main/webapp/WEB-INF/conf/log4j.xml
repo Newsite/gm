@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<!--console-->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %5p (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+	<!-- log-->
+	<appender name="logfile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/gm.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+	<!-- err -->
+	<appender name="errfile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/gmerr.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- Application Loggers -->
+	<logger name="com.naixwf.gm">
+		<level value="debug" />
+	</logger>
+	<logger name="com.naixwf.gm" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="console" />
+		<appender-ref ref="errfile" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+		<appender-ref ref="logfile" />
+	</root>
+
+</log4j:configuration>
