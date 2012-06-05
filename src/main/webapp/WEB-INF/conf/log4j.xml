@@ -29,7 +29,7 @@
 	<logger name="com.naixwf.gm">
 		<level value="debug" />
 	</logger>
-	<logger name="com.naixwf.gm" additivity="false">
+	<logger name="com.naixwf.gm.web" additivity="false">
 		<level value="warn" />
 		<appender-ref ref="console" />
 		<appender-ref ref="errfile" />
