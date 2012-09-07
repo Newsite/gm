@@ -1,0 +1,5 @@
+rule test
+when
+	true
+then
+	System.out.println('rule test');
