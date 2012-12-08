@@ -28,7 +28,7 @@ public class BaseDao<T> {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(BaseDao.class);
 
-    @Resource(name = "gmHibernateTemplate")
+    @Resource
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
     }
