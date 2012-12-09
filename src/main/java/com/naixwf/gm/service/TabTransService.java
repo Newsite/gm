@@ -22,5 +22,5 @@ public interface TabTransService {
      * @author wangfei
      * @param jitapu
      */
-    public void insertJitapu(Jitapu jitapu);
+    public String insertJitapu(Jitapu jitapu);
 }

@@ -18,6 +18,7 @@ import com.naixwf.gm.domain.Jitapu;
 import com.naixwf.gm.domain.Tab;
 import com.naixwf.gm.service.TabService;
 import com.naixwf.gm.service.TabTransService;
+import com.naixwf.gm.util.StringUtil;
 
 /**
  * 
@@ -38,42 +39,43 @@ public class TabTransServiceImpl implements TabTransService {
      * @param jitapu
      * @see com.naixwf.gm.service.TabTransService#insertJitapu(com.naixwf.gm.domain.Jitapu)
      */
-    public void insertJitapu(Jitapu jitapu) {
+    public String insertJitapu(Jitapu jitapu) {
         Tab tab = new Tab();
-        try {
-            String[] data = jitapu
-                    .getData()
-                    .split("-------------------------------------------------------------------------------");
-            String info = data[1];
-
-            String[] infoArr = info.split("\\s");
-            List<String> infoList = new ArrayList<String>();
-            for (String item : infoArr) {
-                if (!item.equals("")) {
-                    Integer start = item.indexOf(":");
-                    if (start == -1) {
-                        start = item.indexOf("：");
-                    }
-                    item = item.substring(start + 1);
-                    if (item.length() > 2) {
-                        infoList.add(item);
-                    }
-
-                }
-            }
-            if (infoList.size() > 3) {
-                logger.error(jitapu.getId() + ":" + infoList.toString());
-            }
-            tab.setName(infoList.get(0));
-            tab.setSinger(infoList.get(1));
-            tab.setSource(infoList.get(2));
-            data[2] = data[2].replace("吉他谱 http://www.jitapu.com", "");
-            data[2] = data[2].replace("我们欢迎您转载曲谱，但请保留我们的地址和作者名！", "");
-            tab.setContent(data[2]);
-            tab.setSite("jitapu");
-            tabService.insert(tab);
-        } catch (Exception e) {
-            logger.debug("解析jitapu失败：id=" + jitapu.getId());
+        String[] data = jitapu.getData().split(
+                "-------------------------------------------------------------------------------");
+        if (data.length != 3) {
+            return ("横线分割后不等于3份:" + jitapu.getId() + ":" + data.length);
         }
+        String info = data[1];
+        String[] infoArr = info.split("\r\n");
+        if (infoArr.length != 4) {
+            return "曲谱信息不是3行";
+        }
+        String name = getValue(infoArr[1]);
+        String singer = getValue(infoArr[2]);
+        String source = getValue(infoArr[3]);
+
+        tab.setName(name);
+        tab.setSinger(singer);
+        tab.setSource(source);
+        data[2] = data[2].replace("吉他谱 http://www.jitapu.com", "");
+        data[2] = data[2].replace("我们欢迎您转载曲谱，但请保留我们的地址和作者名！", "");
+        tab.setContent(data[2]);
+        tab.setSite("jitapu");
+        tabService.insert(tab);
+        return null;
+    }
+
+    /**
+     * @author wangfei
+     * @param string
+     */
+    private String getValue(String item) {
+        Integer start = item.indexOf(":");
+        if (start == -1) {
+            start = item.indexOf("：");
+        }
+        item = item.substring(start + 1);
+        return item.trim();
     }
 }
