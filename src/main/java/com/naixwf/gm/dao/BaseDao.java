@@ -8,14 +8,24 @@ package com.naixwf.gm.dao;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.util.SerializationUtils;
+
+import com.naixwf.gm.util.Page;
 
 /**
  * 
@@ -54,7 +64,7 @@ public class BaseDao<T> {
      * @return
      */
     @SuppressWarnings("unchecked")
-    protected List<T> find(DetachedCriteria criteria) {
+    protected List<T> list(DetachedCriteria criteria) {
         return hibernateTemplate.findByCriteria(criteria);
     }
 
@@ -90,5 +100,65 @@ public class BaseDao<T> {
      */
     public void insert(T entity) {
         hibernateTemplate.save(entity);
+    }
+
+    /**
+     * 根据条件分页查找
+     * 
+     * @author wangfei
+     * @param crit
+     * @param page
+     * @return
+     */
+    public List<T> list(final DetachedCriteria crit, Page page) {
+        if (page == null) {
+            list(crit);
+        }
+        int recordCount = countByCrit(crit);
+        page.setTotalCount(recordCount);
+        return list(crit, page.getStart(), page.getPageSize());
+    }
+
+    /**
+     * 查询某一页的数据
+     * 
+     * @author wangfei
+     * @param crit
+     * @param start
+     * @param pageSize
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    private List<T> list(final DetachedCriteria crit, final int offset, final int length) {
+        crit.setProjection(Projections.rowCount());
+        List<T> list = hibernateTemplate.executeFind(new HibernateCallback<List<T>>() {
+            public List<T> doInHibernate(Session session) throws HibernateException, SQLException {
+                Criteria c = crit.getExecutableCriteria(session);
+                c.setProjection(null);
+                c.setFirstResult(offset);
+                c.setMaxResults(length);
+                return (List<T>) c.list();
+            }
+        });
+        return list;
+    }
+
+    /**
+     * 根据条件查找条数
+     * 
+     * @author wangfei
+     * @param crit
+     * @return
+     */
+    private int countByCrit(final DetachedCriteria crit) {
+        @SuppressWarnings("unchecked")
+        List<T> list = hibernateTemplate.executeFind(new HibernateCallback<List<T>>() {
+            public List<T> doInHibernate(Session session) throws HibernateException, SQLException {
+                Criteria c = crit.getExecutableCriteria(session);
+                c.setProjection(Projections.rowCount());
+                return (List<T>) c.list();
+            }
+        });
+        return ((Long) list.get(0)).intValue();
     }
 }

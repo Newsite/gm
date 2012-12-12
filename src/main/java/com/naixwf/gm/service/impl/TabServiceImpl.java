@@ -13,9 +13,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.naixwf.gm.constant.SearchTypeDef;
 import com.naixwf.gm.dao.TabDao;
 import com.naixwf.gm.domain.Tab;
 import com.naixwf.gm.service.TabService;
+import com.naixwf.gm.util.Page;
 
 /**
  * 
@@ -56,7 +58,40 @@ public class TabServiceImpl implements TabService {
      * @return
      * @see com.naixwf.gm.service.TabService#listAll(java.util.List)
      */
-    public List<Tab> listAll() {
-        return tabDao.listAll();
+    public List<Tab> listAll(Page page) {
+        if (page == null) {
+            page = new Page();
+        }
+        return tabDao.listAll(page);
+    }
+
+    /**
+     * @author wangfei
+     * @param type
+     * @param keyword
+     * @param page
+     * @return
+     * @see com.naixwf.gm.service.TabService#searchTab(java.lang.Integer,
+     *      java.lang.String, com.naixwf.gm.util.Page)
+     */
+    public List<Tab> searchTab(Integer type, String keyword, Page page) {
+        if (page == null) {
+            page = new Page();
+        }
+        List<Tab> list = null;
+        switch (type) {
+        case SearchTypeDef.ALL:
+            list = tabDao.listByAllContent(keyword, page);
+            break;
+        case SearchTypeDef.SINGER:
+            list = tabDao.listBySinger(keyword, page);
+            break;
+        case SearchTypeDef.SONG:
+            list = tabDao.listBySongName(keyword, page);
+            break;
+        default:
+            throw new RuntimeException("没有这个搜索类型:" + type);
+        }
+        return list;
     }
 }

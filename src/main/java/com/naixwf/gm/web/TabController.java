@@ -5,6 +5,7 @@
  */
 package com.naixwf.gm.web;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.naixwf.gm.domain.Tab;
 import com.naixwf.gm.service.TabService;
+import com.naixwf.gm.util.Page;
+import com.naixwf.gm.util.StringUtil;
 
 /**
  * 具体谱子相关
@@ -49,10 +52,30 @@ public class TabController {
      * @return
      */
     @RequestMapping("/list")
-    public String list(Model model) {
-        List<Tab> list = tabService.listAll();
+    public String list(Page page, Model model) {
+        List<Tab> list = tabService.listAll(page);
         model.addAttribute("list", list);
+        model.addAttribute("page", page);
         return "tab/list";
+    }
+
+    /**
+     * 搜索曲谱
+     * 
+     * @author wangfei
+     * @param type
+     * @param value
+     * @return
+     */
+    @RequestMapping("/search")
+    public String searchTab(Integer type, String keyword, Page page, Model model) {
+        if (type == null || StringUtil.isBlank(keyword)) {
+            throw new RuntimeException("type和keyword参数不能为空");
+        }
+        List<Tab> list = tabService.searchTab(type, keyword, page);
+        model.addAttribute("list", list);
+        model.addAttribute("page", page);
+        return "tab/search_result";
     }
 
 }

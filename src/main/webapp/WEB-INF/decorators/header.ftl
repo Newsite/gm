@@ -3,8 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>${title}</title>
-<script>
-var application = {
-    urlPrefix: "${base}" 
-};
-</script>
+<#import "../views/macro/StaticFileHelper.ftl" as helper>
+<@helper.tagStaticResource filename="core.css"/> 
+<@helper.tagStaticResource filename="jquery-1.8.3.js"/>
+<@helper.tagStaticResource filename="easyui/easyloader.js"/>
+<@helper.tagStaticResource filename="core.js"/>
+${head}
+</head>
+<body>
+<div class="top">
+	<div class="top_center">
+		<h1 ><a href="/gm/">GuitarMe</a></h1>
+		<input id="searchBar"></input>  
+		<div id="searchTypeList" style='width:120px'>  
+		    <div data-options="name:'0',iconCls:'icon-ok'">全部</div>
+		    <div data-options="name:'1'">曲名</div>  
+		    <div data-options="name:'2'">歌手</div>  
+		</div> 
+	</div>
+</div>

@@ -1,10 +1,32 @@
+<#setting number_format="#">
 <head>
-<title>列表</title>
-<!-- <link rel="stylesheet" href="/gm/static/css/core.css" type="text/css" />  -->
+<title>曲谱列表</title>
+<script>
+$(document).ready(
+function(){
+	easyloader.load('pagination', function(){ 
+		$('#pager').pagination({  
+		    total:${page.totalCount},  
+		    pageSize:${page.pageSize},
+		    showPageList:false,
+		    showRefresh:false,
+		    pageNumber:${page.pageNo},
+		    beforePageText:'第',
+		    afterPageText:'页,共{pages}页',
+		    displayMsg:'第{from}-{to}条,共{total}条',
+		    onSelectPage:function(pageNumber,pageSize){
+		    	var url =window.location.href;
+		    	window.location.href=url.split('?')[0]+"?pageNo="+pageNumber;
+		    }
+		});
+	});
+});
+
+</script>
 </head>
 <body>
   <div class="tab">
-	<table>
+	<table class="common-table">
 		<tr>
 			<th>id</th>
 			<th>曲名</th>
@@ -22,5 +44,6 @@
 		</tr>
 		</#list>
 	</table>
+	<div id="pager" style="background:#efefef;border:1px solid #ccc;width:400px;"></div> 
 	</div>
 </body>

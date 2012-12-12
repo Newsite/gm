@@ -1,11 +1,5 @@
 <#include "header.ftl">
-<title>${title}</title>
-<#import "../views/macro/StaticFileHelper.ftl" as helper> 
-<@helper.tagStaticResource filename="core.css"/>
-${head}
-</head>
-<body>
-<h1>GuitarMe</h1>
+<div class="main">
 ${body}
+</div>
 <#include "footer.ftl">
-
