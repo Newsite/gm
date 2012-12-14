@@ -6,7 +6,7 @@ $(document).ready(
 				$('#searchBar').searchbox(
 						{
 							searcher : function(keyword, type) {
-								var url = '/gm/tab/search?type=' + type
+								var url = application_root+'/tab/search?type=' + type//TODO
 										+ '&keyword=' + keyword;
 								window.location.href = url;
 							},
