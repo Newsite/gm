@@ -171,11 +171,16 @@ a:hover {
 	width: 960px;
 }
 
-.footer {
+#footer {
 	background: #ddd;
+	margin-top: 20px;
+	height: 30px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 
-.footer_center {
+#footer_center {
 	margin: 0 auto;
 	width: 960px;
 	text-align: right;

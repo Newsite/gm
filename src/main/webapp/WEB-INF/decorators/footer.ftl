@@ -1,5 +1,5 @@
-<div class="footer">
-	<div class="footer_center">Author: naixwf@gmail.com</div>
+<div id="footer">
+	<div id="footer_center">Author: naixwf@gmail.com</div>
 </div>
 </body>
 </html>
