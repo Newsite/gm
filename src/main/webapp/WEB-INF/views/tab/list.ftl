@@ -1,28 +1,6 @@
 <#setting number_format="#">
 <head>
 <title>曲谱列表</title>
-<script>
-$(document).ready(
-function(){
-	easyloader.load('pagination', function(){ 
-		$('#pager').pagination({  
-		    total:${page.totalCount},  
-		    pageSize:${page.pageSize},
-		    showPageList:false,
-		    showRefresh:false,
-		    pageNumber:${page.pageNo},
-		    beforePageText:'第',
-		    afterPageText:'页,共{pages}页',
-		    displayMsg:'第{from}-{to}条,共{total}条',
-		    onSelectPage:function(pageNumber,pageSize){
-		    	var url =window.location.href;
-		    	window.location.href=url.split('?')[0]+"?pageNo="+pageNumber;
-		    }
-		});
-	});
-});
-
-</script>
 </head>
 <body>
   <div class="tab">
@@ -44,6 +22,36 @@ function(){
 		</tr>
 		</#list>
 	</table>
-	<div id="pager" style="background:#efefef;border:1px solid #ccc;width:400px;"></div> 
-	</div>
+	<div id="pagination" class="pagination"></div> 
+  </div>
+	<hr/>
+	<hr/>
+	
+<script>
+var pageNumber=${page.pageNo};
+var pageIndex=pageNumber-1;
+var pageSize=${page.pageSize};
+
+function pageSelectCallBack(index,pageSize){
+	num=index+1;
+	var url =window.location.href;
+	console.info(num);
+	if(num!=pageNumber)
+	window.location.href=url.split('?')[0]+"?pageNo="+num;
+}
+
+$(document).ready(
+function(){
+		$('#pagination').pagination(${page.totalCount},{
+			'current_page':pageIndex,
+		    'items_per_page':pageSize,
+		    'num_display_entries' : 5, 
+		    'num_edge_entries'    : 2,
+		    'prev_text': "上一页", 
+		    'next_text': "下一页",
+		    'callback':pageSelectCallBack
+		});
+});
+
+</script>
 </body>

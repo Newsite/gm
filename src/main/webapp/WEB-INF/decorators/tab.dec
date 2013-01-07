@@ -2,15 +2,18 @@
 <@helper.tagStaticResource filename="core.js"/>
 </head>
 <body>
-<div class="top">
-	<div class="top_center">
+<div id="top">
+	<div id="top_center">
 		<h1 ><a href="${base}">GuitarMe</a></h1>
-		<input id="searchBar"></input>
-		<div id="searchTypeList" style='width:120px'>
-		    <div data-options="name:'0',iconCls:'icon-ok'">全部</div>
-		    <div data-options="name:'1'">曲名</div>
-		    <div data-options="name:'2'">歌手</div>
-		</div> 
+		<form id="search_tab_form">
+			<select id="searchType" >
+			    <option value='0'>全部</option>
+			    <option value='1'>曲名</option>
+			    <option value='2'>歌手</option>
+			</select> 
+			<input id="searchBar"/>
+			<input type="submit" class="small button" value="搜索"/>
+		</form> 
 	</div>
 </div>
 

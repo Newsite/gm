@@ -1,174 +1,23 @@
-* html {
-	background-image: url(about:blank);
-	background-attachment: fixed;
-}
 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td
-	{
-	margin: 0;
-	padding: 0;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-fieldset,img {
-	border: 0;
-}
-
-address,caption,cite,code,dfn,em,var {
-	font-style: normal;
-	font-weight: normal;
-}
-
-li {
-	list-style: none;
-}
-
-caption,th {
-	text-align: left;
-}
-
-h1,h2,h3,h4,h5,h6 {
-	font-size: 100%;
-}
-
-input,textarea,select {
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: inherit;
-}
-
-legend {
-	color: #000;
-}
-
-pre {
-	white-space: pre-wrap;
-	white-space: -moz-pre-wrap;
-	white-space: -pre-wrap;
-	white-space: -o-pre-wrap;
-	word-wrap: break-word;
-}
-
-select {
-	margin: 0;
-	padding: 0;
-	font-size: 14px;
-	-webkit-appearance: menulist-button;
-	border: 1px solid #89B4D6;
-	padding: 1px 2px;
-	padding-right: 0px;
-}
-
-/*common */
-body {
-	font: normal 14px/1.5 Tahoma, Helvetica, arial, sans-serif;
-	color: #000;
-}
-
-a {
-	padding: 0 3px;
-	color: #0f91cf;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-a:hover {
-	text-decoration: none;
-	background: #0f91cf;
-	color: #fff;
-	cursor: pointer;
-}
-
-/*semantic*/
-.center {
-	text-align: center;
-}
-
-.text-right {
-	text-align: right;
-}
-
-.text-center {
-	text-align: center;
-}
-
-.float-right {
-	float: right;
-}
-
-.float-left {
-	float: left;
-}
-
-.clear {
-	clear: both;
-}
-
-.red {
-	color: red;
-}
-
-.hidden {
-	display: none;
-}
-
-/* width */
-.middle-text {
-	width: 300px;
-}
-
-.xmiddle-text {
-	width: 380px;
-}
-
-.large-text {
-	width: 600px;
-}
-
-.xlarge-text {
-	width: 700px;
-}
-
-.smiddle-text {
-	width: 200px;
-}
-
-.xsmiddle-text {
-	width: 150px;
-}
-
-.short-text {
-	width: 100px;
-}
-
-.lshort-text {
-	width: 80px;
-}
-
-.sshort-text {
-	width: 60px;
-}
-
-.xsshort-text {
-	width: 40px;
-}
 
 .main {
 	margin: 0 auto;
 	width: 960px;
 }
 
-.top {
+#top {
 	background: #ddd;
+	width: 100%;
 }
 
-.top_center {
+#top_center {
 	margin: 0 auto;
 	width: 960px;
+}
+
+#searchType {
+	width: 60px;
+	hight: 100%;
 }
 
 #footer {

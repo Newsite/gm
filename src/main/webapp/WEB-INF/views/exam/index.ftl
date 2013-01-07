@@ -12,7 +12,7 @@
 			</tr>
 			<tr>
 				<th>&nbsp</th>
-				<td><input type="submit" value="确定" /></td>
+				<td><input type="submit" value="确定" class="small button" /></td>
 			</tr>
 		</table>
 	</form>

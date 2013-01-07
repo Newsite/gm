@@ -66,7 +66,7 @@ public class IndexController {
      */
     @RequestMapping("/")
     public String index(Integer tabId, Model model) {
-        return "redirect:exam/index";
+        return "redirect:tab/list";
     }
 
     /**
