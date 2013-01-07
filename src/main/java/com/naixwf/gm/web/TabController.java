@@ -5,7 +5,6 @@
  */
 package com.naixwf.gm.web;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.annotation.Resource;

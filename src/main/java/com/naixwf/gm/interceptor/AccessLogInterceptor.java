@@ -24,13 +24,12 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * @version 1.0
  */
 public class AccessLogInterceptor extends HandlerInterceptorAdapter {
-    @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(AccessLogInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object handler) throws Exception {
-        //把request本身放入attibute以便ftl调用
+        // 把request本身放入attibute以便ftl调用
         request.setAttribute("request", request);
         // logId
         String logId = UUID.randomUUID().toString();
@@ -48,17 +47,13 @@ public class AccessLogInterceptor extends HandlerInterceptorAdapter {
         Map<String, String> parameterMap = request.getParameterMap();
         for (Iterator<String> iter = parameterMap.keySet().iterator(); iter.hasNext();) {
             String key = iter.next();
-
             if (key != null && !key.trim().equals("")) {
                 String value = request.getParameter(key);
-
                 if (value.contains("\r") || value.contains("\n")) {
                     value = value.replaceAll("\r", "").replace("\n", "|");
                 }
-
                 params.append(key).append("=").append(value);
             }
-
             if (iter.hasNext()) {
                 params.append("&");
             }
