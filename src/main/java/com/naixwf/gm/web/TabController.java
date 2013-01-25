@@ -14,11 +14,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.naixwf.gm.domain.Tab;
-import com.naixwf.gm.service.TabService;
+import com.naixwf.chord4j.chord.dic.Pitch;
+import com.naixwf.gm.domain.TabTxt;
+import com.naixwf.gm.exception.InvalidParamException;
+import com.naixwf.gm.service.TabTxtService;
 import com.naixwf.gm.util.Page;
-import com.naixwf.gm.util.StringUtil;
+import com.naixwf.gm.util.TabUtil;
+import com.naixwf.gm.web.vo.TabContentVo;
 
 /**
  * 具体谱子相关
@@ -30,32 +34,44 @@ import com.naixwf.gm.util.StringUtil;
  */
 @Controller
 @RequestMapping("/tab")
-public class TabController {
+public class TabController extends BaseController {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(TabController.class);
     @Resource
-    private TabService tabService;
-
-    @RequestMapping("/details")
-    public String details(Integer tabId, Model model) {
-        Tab tab = tabService.findById(tabId);
-        model.addAttribute("tab", tab);
-        return "tab/details";
-    }
+    private TabTxtService tabTxtService;
 
     /**
-     * 曲谱列表
+     * 具体曲谱
      * 
      * @author wangfei
+     * @param tabId
      * @param model
      * @return
      */
-    @RequestMapping("/list")
-    public String list(Page page, Model model) {
-        List<Tab> list = tabService.listAll(page);
-        model.addAttribute("list", list);
-        model.addAttribute("page", page);
-        return "tab/list";
+    @RequestMapping("/details")
+    public String details(Integer tabId, Integer offset, Model model) {
+        if (offset != null && (offset < 0 || offset > 11)) {
+            throw new InvalidParamException("pitchOffset必须在0-11之间");
+        }
+        TabTxt tab = tabTxtService.findById(tabId);
+        putTransposer(tab.getKeyChosen(), model);
+
+        TabContentVo content = TabUtil.jsonToTabContent(tab.getContent());
+        if (offset != null) {// 处理转调
+            content.transpose(offset);
+            Pitch pitch = new Pitch(tab.getKeyChosen());
+            tab.setKeyChosen(pitch.add(offset).getName());
+        } else {
+            offset = 0;
+        }
+        model.addAttribute("offset",offset);
+        
+        tab.setContentVo(content);
+        model.addAttribute("tab", tab);
+
+        putSearchType2Model(model);
+
+        return "tab/details";
     }
 
     /**
@@ -66,15 +82,15 @@ public class TabController {
      * @param value
      * @return
      */
-    @RequestMapping("/search")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String searchTab(Integer type, String keyword, Page page, Model model) {
-        if (type == null || StringUtil.isBlank(keyword)) {
-            throw new RuntimeException("type和keyword参数不能为空");
-        }
-        List<Tab> list = tabService.searchTab(type, keyword, page);
-        model.addAttribute("list", list);
         model.addAttribute("page", page);
-        return "tab/search_result";
-    }
 
+        List<TabTxt> list = tabTxtService.searchTab(type, keyword, page);
+        model.addAttribute("list", list);
+
+        putSearchType2Model(model);
+
+        return "tab/list";
+    }
 }

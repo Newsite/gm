@@ -75,6 +75,9 @@ public class TabServiceImpl implements TabService {
      *      java.lang.String, com.naixwf.gm.util.Page)
      */
     public List<Tab> searchTab(Integer type, String keyword, Page page) {
+        if (keyword == null) {
+            return tabDao.listAll(page);
+        }
         if (page == null) {
             page = new Page();
         }
@@ -90,7 +93,7 @@ public class TabServiceImpl implements TabService {
             list = tabDao.listBySongName(keyword, page);
             break;
         default:
-            throw new RuntimeException("没有这个搜索类型:" + type);
+            list = tabDao.listAll(page);
         }
         return list;
     }

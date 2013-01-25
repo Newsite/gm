@@ -1,23 +1,30 @@
 <#include "header.ftl">
-<@helper.tagStaticResource filename="core.js"/>
 </head>
 <body>
-<div id="top">
-	<div id="top_center">
-		<h1 ><a href="${base}">GuitarMe</a></h1>
-		<form id="search_tab_form">
-			<select id="searchType" >
-			    <option value='0'>全部</option>
-			    <option value='1'>曲名</option>
-			    <option value='2'>歌手</option>
-			</select> 
-			<input id="searchBar"/>
-			<input type="submit" class="small button" value="搜索"/>
+
+<header>
+	<div class="row">
+	<h1 >GuitarMe</h1>
+		<form  class="custom" action="${request.getContextPath()}/tab/list">
+			<div class="row collapse">
+				<div class="one columns" style="display:none;">
+					<@dic.select source=searchTypeMap dicName="type" checked="0"/>
+				</div>
+				<div class="two columns">
+					<input type="text" name="keyword"/>
+				</div>
+				<div class="one columns">
+					<input type="submit" class="button postfix" value="搜索"/>
+				</div>
+				<div class="eight columns"/>
+			</div>
 		</form> 
 	</div>
-</div>
+</header>
 
-<div class="main">
-${body}
-</div>
+<section id="mainContent">
+	<div class="row">
+		${body}
+	</div>
+</section>
 <#include "footer.ftl">

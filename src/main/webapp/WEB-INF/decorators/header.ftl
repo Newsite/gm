@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>${title}</title>
 <#import "../views/macro/StaticFileHelper.ftl" as helper>
+<#import "../views/macro/dic_macro.ftl" as dic>
 
 <@helper.tagStaticResource filename="foundation.css"/> 
 <@helper.tagStaticResource filename="exam.css"/>
@@ -26,6 +27,7 @@
 <@helper.tagStaticResource filename="foundation/jquery.foundation.topbar.js"/>
 <@helper.tagStaticResource filename="foundation/jquery.placeholder.js"/>
 <@helper.tagStaticResource filename="jquery.pagination.js"/>
+
 ${head}
 <script>
 	application_root='${base}';
