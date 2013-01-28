@@ -8,3 +8,4 @@
 .mymetadata
 src/main/webapp/WEB-INF/classes/
 logs
+src/main/webapp/static/.sass-cache

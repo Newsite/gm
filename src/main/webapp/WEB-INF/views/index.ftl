@@ -14,7 +14,7 @@
 <header id="index_top">
 	<div class="row">
 		<div class="twelve columns">
-				<div class="orbit">
+				<div class="orbit" id="index_slider">
 					<img class="twelve columns" alt="slide_1" src="${request.getContextPath()}/static/images/demo1.jpg" />
 					<img class="twelve columns" alt="slide_2" src="${request.getContextPath()}/static/images/demo2.jpg" />
 					<img class="twelve columns" alt="slide_3" src="${request.getContextPath()}/static/images/demo3.jpg" />
@@ -67,7 +67,7 @@
 	</div>
 	<script type="text/javascript">
    $(window).load(function() {
-       $("#index_top_slider").orbit({fluid:'16x4' });
+       $("#index_slider").orbit({fluid:'16x4' });
    });
 </script>
 </body>
