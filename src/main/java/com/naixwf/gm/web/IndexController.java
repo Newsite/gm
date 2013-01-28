@@ -5,8 +5,7 @@
  */
 package com.naixwf.gm.web;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -15,11 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
-import com.naixwf.gm.dao.JitapuDao;
-import com.naixwf.gm.service.TabTransService;
+import com.naixwf.gm.domain.TabTxt;
+import com.naixwf.gm.service.TabTxtService;
 
 /**
  * 
@@ -30,13 +27,15 @@ import com.naixwf.gm.service.TabTransService;
  */
 @Controller
 public class IndexController {
+    @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
     @Resource
-    JitapuDao jitapuDao;
-    @Resource
-    TabTransService tabTransService;
-    @Resource
-    private FreeMarkerConfigurer freemarkerConfig;
+    private TabTxtService tabTxtService;
+
+    @RequestMapping("/")
+    public String home(Integer tabId, Model model) {
+        return "redirect:index";
+    }
 
     /**
      * 首页
@@ -45,34 +44,12 @@ public class IndexController {
      * @param model
      * @return
      */
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String index(Integer tabId, Model model) {
-        return "redirect:tab/list";
-    }
-
-    /**
-     * 把jitapu表转化进tab表
-     * 
-     * @author wangfei
-     */
-    @RequestMapping("/transe_jitapu")
-    public @ResponseBody
-    Map<String, Object> saveJitapu() {
-        // List<String> errorList = new ArrayList<String>();
-        // List<Jitapu> list = jitapuDao.listAll();
-        // for (Jitapu item : list) {
-        // String error = tabTransService.insertJitapu(item);
-        // if (error != null) {
-        // errorList.add(error);
-        // }
-        // }
-        // logger.warn(String.format("共%d条,失败%d条", list.size(),
-        // errorList.size()));
-        // for (String item : errorList) {
-        // logger.warn(item);
-        // }
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("data", "转换完毕");
-        return map;
+        List<TabTxt> lastTabList = tabTxtService.listLastTabs(10);
+        List<TabTxt> hotTabList = tabTxtService.listHotTabs(10);
+        model.addAttribute("lastTabList", lastTabList);
+        model.addAttribute("hotTabList", hotTabList);
+        return "index";
     }
 }

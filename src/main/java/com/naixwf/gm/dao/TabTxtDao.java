@@ -8,12 +8,12 @@ package com.naixwf.gm.dao;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.naixwf.gm.domain.Tab;
 import com.naixwf.gm.domain.TabTxt;
 import com.naixwf.gm.util.Page;
 
@@ -80,6 +80,19 @@ public class TabTxtDao extends BaseDao<TabTxt> {
     public List<TabTxt> listBySongName(String name, Page page) {
         DetachedCriteria crit = DetachedCriteria.forClass(TabTxt.class);
         crit.add(Restrictions.like("name", "%" + name + "%"));
+        return list(crit, page);
+    }
+
+    /**
+     * 按添加时间倒序排列
+     * 
+     * @author wangfei
+     * @param page
+     * @return
+     */
+    public List<TabTxt> listByAddTimeDesc(Page page) {
+        DetachedCriteria crit = DetachedCriteria.forClass(TabTxt.class);
+        crit.addOrder(Order.desc("addTime"));
         return list(crit, page);
     }
 }

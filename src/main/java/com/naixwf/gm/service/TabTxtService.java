@@ -45,4 +45,22 @@ public interface TabTxtService {
      * @return
      */
     List<TabTxt> searchTab(Integer type, String keyword, Page page);
+
+    /**
+     * 列出最后i个文本谱
+     * 
+     * @author wangfei
+     * @param i
+     * @return
+     */
+    List<TabTxt> listLastTabs(int i);
+
+    /**
+     * 列出最火的i个文本谱
+     * 
+     * @author wangfei
+     * @param i
+     * @return
+     */
+    List<TabTxt> listHotTabs(int i);
 }

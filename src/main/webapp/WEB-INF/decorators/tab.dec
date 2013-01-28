@@ -1,30 +1,23 @@
 <#include "header.ftl">
-</head>
-<body>
-
-<header>
-	<div class="row">
-	<h1 >GuitarMe</h1>
-		<form  class="custom" action="${request.getContextPath()}/tab/list">
-			<div class="row collapse">
-				<div class="one columns" style="display:none;">
-					<@dic.select source=searchTypeMap dicName="type" checked="0"/>
-				</div>
-				<div class="two columns">
-					<input type="text" name="keyword"/>
-				</div>
-				<div class="one columns">
-					<input type="submit" class="button postfix" value="搜索"/>
-				</div>
-				<div class="eight columns"/>
-			</div>
-		</form> 
-	</div>
-</header>
-
-<section id="mainContent">
-	<div class="row">
-		${body}
-	</div>
-</section>
+<div class="contain-to-grid">
+	<nav class="top-bar">
+		<ul>
+	    	<li class="name"><h1><a href="${request.getContextPath()}">GuitarMe</a></h1></li>
+	    	<li class="divider"></li>
+	   	 	<li class="toggle-topbar"><a href="#"></a></li>
+	  	</ul>
+	  	<section>
+	  		<ul class="right">
+	  			<li class="divider"></li>
+	  			<li class="search">
+				  <form class="collapse" action="${request.getContextPath()}/tab/list">
+				    <input type="text" name="keyword" placeholder="曲名/歌手/歌词"/>
+				    <input type="submit" class="secondary radius button" value="搜索"/>
+				  </form>
+				</li>
+	  		</ul>
+	  	</section>
+	</nav>
+</div>
+${body}
 <#include "footer.ftl">

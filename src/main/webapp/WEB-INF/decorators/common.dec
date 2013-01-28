@@ -1,0 +1,3 @@
+<#include "header.ftl">
+${body}
+<#include "footer.ftl">

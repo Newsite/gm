@@ -9,13 +9,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import net.bull.javamelody.MonitoredWithSpring;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.naixwf.gm.constant.SearchTypeDef;
 import com.naixwf.gm.dao.TabTxtDao;
-import com.naixwf.gm.domain.Tab;
 import com.naixwf.gm.domain.TabTxt;
 import com.naixwf.gm.service.TabTxtService;
 import com.naixwf.gm.util.Page;
@@ -27,6 +28,7 @@ import com.naixwf.gm.util.Page;
  * 
  * @version 1.0
  */
+@MonitoredWithSpring
 @Service
 public class TabTxtServiceImpl implements TabTxtService {
     @SuppressWarnings("unused")
@@ -52,6 +54,9 @@ public class TabTxtServiceImpl implements TabTxtService {
     }
 
     public List<TabTxt> searchTab(Integer type, String keyword, Page page) {
+        if (type == null) {
+            type = SearchTypeDef.ALL;
+        }
         if (keyword == null) {
             return tabTxtDao.listAll(page);
         }
@@ -73,5 +78,28 @@ public class TabTxtServiceImpl implements TabTxtService {
             list = tabTxtDao.listAll(page);
         }
         return list;
+    }
+
+    /**
+     * @author wangfei
+     * @param i
+     * @return
+     * @see com.naixwf.gm.service.TabTxtService#listLastTabs(int)
+     */
+    public List<TabTxt> listLastTabs(int i) {
+        Page page = new Page(1, i);
+        return tabTxtDao.listByAddTimeDesc(page);
+    }
+
+    /**
+     * TODO
+     * 
+     * @author wangfei
+     * @param i
+     * @return
+     * @see com.naixwf.gm.service.TabTxtService#listHotTabs(int)
+     */
+    public List<TabTxt> listHotTabs(int i) {
+        return listLastTabs(i);
     }
 }

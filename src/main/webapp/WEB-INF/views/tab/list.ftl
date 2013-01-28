@@ -1,6 +1,7 @@
 <#setting number_format="#">
+<#import "../macro/foundation_macro.ftl" as foundation>
 <head>
-<title>曲谱列表</title>
+<title>搜索结果</title>
 </head>
 <body>
   <div class="container">
@@ -20,34 +21,8 @@
 			</#list>
 		</table>
 	</div>
-	<div class="row">
-		<div id="pagination" class="pagination"></div>
+	<div class="row pagination-centered">
+		<@foundation.pagination macro_id="pagination" url='${request.getContextPath()}/tab/list' current=page.pageNo total=page.totalPageCount/>
 	</div> 
   </div>
-<script>
-var pageNumber=${page.pageNo};
-var pageIndex=pageNumber-1;
-var pageSize=${page.pageSize};
-
-function pageSelectCallBack(index,pageSize){
-	num=index+1;
-	var url =window.location.href;
-	if(num!=pageNumber)
-	window.location.href=url.split('?')[0]+"?pageNo="+num;
-}
-
-$(document).ready(
-function(){
-		$('#pagination').pagination(${page.totalCount},{
-			'current_page':pageIndex,
-		    'items_per_page':pageSize,
-		    'num_display_entries' : 3, 
-		    'num_edge_entries'    : 2,
-		    'prev_text': "上一页", 
-		    'next_text': "下一页",
-		    'callback':pageSelectCallBack
-		});
-});
-
-</script>
 </body>

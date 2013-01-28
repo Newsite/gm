@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="six columns radius">
 		<div class="row panel ">
-			<div class="five columns">
+			<div class="twelve columns">
 				<h5>曲名:${tab.name}</h5>
 				<h6>歌手:${tab.singer!''}</h6>
 				<h6>原调:${tab.keyOrigin!''}</h6>
@@ -43,7 +43,7 @@
 		<div class="row">
 			<div class="panel">
 			<h6 align="center">和弦图解</h6>
-			<img src="${request.getContextPath()}/static/img/chord_ex.png"/>
+			<img src="${request.getContextPath()}/static/images/chord_ex.png"/>
 			</div>
 		</div>
 	</div>

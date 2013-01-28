@@ -11,8 +11,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import net.bull.javamelody.MonitoringFilter;
 
@@ -44,14 +42,6 @@ public class GmMonitoringFilter extends MonitoringFilter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        // String token="admin";
-        // final HttpServletRequest httpRequest = (HttpServletRequest) request;
-        // final HttpServletResponse httpResponse = (HttpServletResponse)
-        // response;
-        // if
-        // (httpRequest.getRequestURI().equals(getMonitoringUrl(httpRequest))){
-        // logger.info(httpRequest.getParameter("token"));
-        // }
         super.doFilter(request, response, chain);
     }
 }

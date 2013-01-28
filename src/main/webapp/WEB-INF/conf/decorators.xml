@@ -6,4 +6,7 @@
 	<decorator name="exam" page="exam.dec">
 		<pattern>/exam/*</pattern>
 	</decorator>
+	<decorator name="common" page="common.dec">
+		<pattern>/*</pattern>
+	</decorator>
 </decorators>

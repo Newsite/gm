@@ -84,9 +84,8 @@ public class TabController extends BaseController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String searchTab(Integer type, String keyword, Page page, Model model) {
-        model.addAttribute("page", page);
-
         List<TabTxt> list = tabTxtService.searchTab(type, keyword, page);
+        model.addAttribute("page", page);
         model.addAttribute("list", list);
 
         putSearchType2Model(model);

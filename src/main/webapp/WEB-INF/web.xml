@@ -35,6 +35,14 @@
 			<param-name>url-exclude-pattern</param-name>
 			<param-value>/static/.*</param-value>
 		</init-param>
+		<init-param>
+			<param-name>mail-session</param-name>
+			<param-value>javamelody/mail</param-value>
+		</init-param>
+		<init-param>
+			<param-name>admin-emails</param-name>
+			<param-value>wangfei@meituan.com</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>monitoring</filter-name>
@@ -61,8 +69,6 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				classpath:net/bull/javamelody/monitoring-spring.xml
-                classpath:context/services.xml
-                classpath:context/data-access-layer.xml
                 /WEB-INF/conf/spring/applicationContext.xml
 			</param-value>
 		</init-param>
