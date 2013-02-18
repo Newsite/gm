@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.naixwf.chord4j.chord.dic.Chord;
-import com.naixwf.chord4j.chord.dic.MajorTriads;
+import com.naixwf.chord4j.chord.dic.MajorTriad;
 import com.naixwf.chord4j.chord.dic.Note;
 
 /**
@@ -92,7 +92,7 @@ public class Fretboard {
     }
 
     public static void main(String[] args) {
-        Chord chord = new MajorTriads(Note.C);
+        Chord chord = new MajorTriad(Note.C);
         printChord(chord, 0);
     }
 }

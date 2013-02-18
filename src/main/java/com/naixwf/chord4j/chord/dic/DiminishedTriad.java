@@ -12,21 +12,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 属七和弦/大小七和弦
+ * 减三和弦
  * 
  * @author wangfei
  * @created 2013-1-30
  * 
  * @version 1.0
  */
-public class DominantSevenths extends Sevenths {
+public class DiminishedTriad extends Triad {
     @SuppressWarnings("unused")
-    private static final Logger logger = LoggerFactory.getLogger(DominantSevenths.class);
+    private static final Logger logger = LoggerFactory.getLogger(DiminishedTriad.class);
 
     /**
      * @param root
      */
-    public DominantSevenths(Note root) {
+    public DiminishedTriad(Note root) {
         super(root);
     }
 
@@ -37,7 +37,7 @@ public class DominantSevenths extends Sevenths {
      */
     @Override
     protected List<Interval> getIntervalList() {
-        return Arrays.asList(Interval.M3, Interval.P5, Interval.m7);
+        return Arrays.asList(Interval.m3, Interval.d5);
     }
 
     /**
@@ -47,6 +47,7 @@ public class DominantSevenths extends Sevenths {
      */
     @Override
     public String getPostfix() {
-        return ChordPostfix.DOMINANT_SEVENTH.getMain();
+        return ChordPostfix.DIMINISHED_TRIAD.getMain();
     }
+
 }

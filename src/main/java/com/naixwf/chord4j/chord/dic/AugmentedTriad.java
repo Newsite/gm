@@ -12,21 +12,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 减三和弦
+ * 增三和弦
  * 
  * @author wangfei
  * @created 2013-1-30
  * 
  * @version 1.0
  */
-public class DiminishedTriads extends Triads {
+public class AugmentedTriad extends Triad {
     @SuppressWarnings("unused")
-    private static final Logger logger = LoggerFactory.getLogger(DiminishedTriads.class);
+    private static final Logger logger = LoggerFactory.getLogger(AugmentedTriad.class);
 
     /**
      * @param root
      */
-    public DiminishedTriads(Note root) {
+    public AugmentedTriad(Note root) {
         super(root);
     }
 
@@ -37,7 +37,7 @@ public class DiminishedTriads extends Triads {
      */
     @Override
     protected List<Interval> getIntervalList() {
-        return Arrays.asList(Interval.m3, Interval.d5);
+        return Arrays.asList(Interval.M3, Interval.A5);
     }
 
     /**
@@ -47,7 +47,6 @@ public class DiminishedTriads extends Triads {
      */
     @Override
     public String getPostfix() {
-        return ChordPostfix.DIMINISHED_TRIAD.getMain();
+        return ChordPostfix.AUGMENTED_TRIAD.getMain();
     }
-
 }

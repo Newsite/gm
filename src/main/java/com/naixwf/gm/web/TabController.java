@@ -16,8 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.naixwf.chord4j.chord.dic.Chord;
 import com.naixwf.chord4j.chord.dic.Note;
-import com.naixwf.chord4j.chord.dic.Pitch;
 import com.naixwf.gm.domain.TabTxt;
 import com.naixwf.gm.exception.InvalidParamException;
 import com.naixwf.gm.service.TabTxtService;
@@ -57,7 +57,7 @@ public class TabController extends BaseController {
 
         TabTxt tab = tabTxtService.findById(tabId);
         tab.setKeyOrigin(Note.getByName(tab.getKeyOrigin()).getName());
-        
+
         // 变调器
         putTransposer(tab.getKeyChosen(), model);
 
@@ -77,7 +77,9 @@ public class TabController extends BaseController {
 
         putSearchType2Model(model);
 
-        // TODO 和弦转换图
+        //和弦转换图
+        List<Chord> chordList = content.getChordList();
+        model.addAttribute("chordList", chordList);
         return "tab/details";
     }
 

@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 
 import com.naixwf.chord4j.chord.dic.Note;
-import com.naixwf.chord4j.chord.dic.Pitch;
 import com.naixwf.gm.constant.SearchTypeDef;
 
 /**
@@ -48,7 +47,6 @@ public class BaseController {
         List<String> keyList = new ArrayList<String>();
         Note n = Note.getByName(keyStart);
         for (int i = 0; i < 12; i++) {
-            logger.debug(keyStart);
             keyList.add(n.getName());
             n = n.add(1);
         }

@@ -9,22 +9,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 七和弦
+ * 九和弦 http://en.wikipedia.org/wiki/Ninth_chord
  * 
  * @author wangfei
- * @created 2013-1-30
+ * @created 2013-2-18
  * 
  * @version 1.0
  */
-public abstract class Sevenths extends Chord {
-
+public abstract class Ninth extends Chord {
     @SuppressWarnings("unused")
-    private static final Logger logger = LoggerFactory.getLogger(Sevenths.class);
+    private static final Logger logger = LoggerFactory.getLogger(Ninth.class);
 
     /**
      * @param root
      */
-    public Sevenths(Note root) {
+    protected Ninth(Note root) {
         super(root);
     }
 
@@ -35,6 +34,6 @@ public abstract class Sevenths extends Chord {
      */
     @Override
     protected Integer getNoteNum() {
-        return 4;
+        return 5;
     }
 }

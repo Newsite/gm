@@ -12,21 +12,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 增三和弦
+ * 属七和弦/大小七和弦
  * 
  * @author wangfei
  * @created 2013-1-30
  * 
  * @version 1.0
  */
-public class AugmentedTriads extends Triads {
+public class DominantSeventh extends Seventh {
     @SuppressWarnings("unused")
-    private static final Logger logger = LoggerFactory.getLogger(AugmentedTriads.class);
+    private static final Logger logger = LoggerFactory.getLogger(DominantSeventh.class);
 
     /**
      * @param root
      */
-    public AugmentedTriads(Note root) {
+    public DominantSeventh(Note root) {
         super(root);
     }
 
@@ -37,7 +37,7 @@ public class AugmentedTriads extends Triads {
      */
     @Override
     protected List<Interval> getIntervalList() {
-        return Arrays.asList(Interval.M3, Interval.A5);
+        return Arrays.asList(Interval.M3, Interval.P5, Interval.m7);
     }
 
     /**
@@ -47,6 +47,6 @@ public class AugmentedTriads extends Triads {
      */
     @Override
     public String getPostfix() {
-        return ChordPostfix.AUGMENTED_TRIAD.getMain();
+        return ChordPostfix.DOMINANT_SEVENTH.getMain();
     }
 }

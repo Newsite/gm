@@ -22,7 +22,9 @@ public enum ChordPostfix {
     MAJOR_TRIAD(Arrays.asList("", "M", "maj", "△")), MINOR_TRIAD(Arrays.asList("m", "min", "-",
             "-△")), AUGMENTED_TRIAD(Arrays.asList("aug", "+", "+5", "(#5)", "（#5）", "+△", "△+5",
             "△(#5)", "△（#5）")), DIMINISHED_TRIAD(Arrays.asList("dim", "o", "o△", "m-5", "m（♭5）",
-            "m(♭5)")), DOMINANT_SEVENTH(Arrays.asList("7", "Mm7"));
+            "m(♭5)")), DOMINANT_SEVENTH(Arrays.asList("7", "Mm7")), MAJOR_SEVENTH(Arrays.asList(
+            "M7", "MM7")), MINOR_SEVENTH(Arrays.asList("m7", "mm7", "-7")), DOMINANT_NINTH(Arrays
+            .asList("9"));
     private List<String> list;
 
     private ChordPostfix(List<String> list) {

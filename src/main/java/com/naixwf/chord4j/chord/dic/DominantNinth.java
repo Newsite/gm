@@ -12,22 +12,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 小三和弦
+ * 属9和弦
  * 
  * @author wangfei
- * @created 2013-1-30
+ * @created 2013-2-18
  * 
  * @version 1.0
  */
-public class MinorTriads extends Triads {
+public class DominantNinth extends Ninth {
 
     @SuppressWarnings("unused")
-    private static final Logger logger = LoggerFactory.getLogger(MinorTriads.class);
+    private static final Logger logger = LoggerFactory.getLogger(DominantNinth.class);
 
     /**
      * @param root
      */
-    public MinorTriads(Note root) {
+    protected DominantNinth(Note root) {
         super(root);
     }
 
@@ -38,7 +38,9 @@ public class MinorTriads extends Triads {
      */
     @Override
     protected List<Interval> getIntervalList() {
-        return Arrays.asList(Interval.m3, Interval.P5);
+        // return Arrays.asList(Interval.M3, Interval.P5,
+        // Interval.m7,Interval.);
+        return null;
     }
 
     /**
@@ -48,6 +50,6 @@ public class MinorTriads extends Triads {
      */
     @Override
     public String getPostfix() {
-        return ChordPostfix.MINOR_TRIAD.getMain();
+        return ChordPostfix.DOMINANT_NINTH.getMain();
     }
 }

@@ -66,4 +66,23 @@ public class TabContentVo extends ArrayList<Sentence> {
         return this;
     }
 
+    /**
+     * 返回谱子中所有的Chord
+     * 
+     * @author wangfei
+     * @return
+     */
+    public List<Chord> getChordList() {
+        List<Chord> list = new ArrayList<Chord>();
+        if (!isEmpty()) {
+            for (Sentence s : this) {
+                for (Chord c : s.getChordList()) {
+                    if (!list.contains(c)) {
+                        list.add(c);
+                    }
+                }
+            }
+        }
+        return list;
+    }
 }

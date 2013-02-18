@@ -5,7 +5,6 @@
  */
 package com.naixwf.chord4j.chord.dic;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,18 +62,30 @@ public abstract class Chord {
         throw new RuntimeException(String.format("转换失败,string=", str));
     }
 
+    /**
+     * 根据根音和和弦名称后缀，生成和弦
+     * 
+     * @author wangfei
+     * @param root
+     * @param postfix
+     * @return
+     */
     public static Chord newChord(Note root, String postfix) {
         Chord chord = null;
         if (ChordPostfix.MAJOR_TRIAD.getList().contains(postfix)) {
-            chord = new MajorTriads(root);
-        } else if (ChordPostfix.MINOR_TRIAD.getMain().contains(postfix)) {
-            chord = new MinorTriads(root);
-        } else if (ChordPostfix.DIMINISHED_TRIAD.getMain().contains(postfix)) {
-            chord = new DiminishedTriads(root);
-        } else if (ChordPostfix.AUGMENTED_TRIAD.getMain().contains(postfix)) {
-            chord = new AugmentedTriads(root);
-        } else if (ChordPostfix.DOMINANT_SEVENTH.getMain().contains(postfix)) {
-            chord = new DominantSevenths(root);
+            chord = new MajorTriad(root);
+        } else if (ChordPostfix.MINOR_TRIAD.getList().contains(postfix)) {
+            chord = new MinorTriad(root);
+        } else if (ChordPostfix.DIMINISHED_TRIAD.getList().contains(postfix)) {
+            chord = new DiminishedTriad(root);
+        } else if (ChordPostfix.AUGMENTED_TRIAD.getList().contains(postfix)) {
+            chord = new AugmentedTriad(root);
+        } else if (ChordPostfix.DOMINANT_SEVENTH.getList().contains(postfix)) {
+            chord = new DominantSeventh(root);
+        } else if (ChordPostfix.MAJOR_SEVENTH.getList().contains(postfix)) {
+            chord = new MajorSeventh(root);
+        } else if (ChordPostfix.MINOR_SEVENTH.getList().contains(postfix)) {
+            chord = new MinorSeventh(root);
         } else {
             throw new RuntimeException("没有找到这个和弦后缀:" + postfix);
         }
@@ -112,6 +123,30 @@ public abstract class Chord {
             sb.append("-").append(tmp.getName());
         }
         return sb.toString();
+    }
+
+    /**
+     * 
+     * TODO 覆盖object.equals时必须同时覆盖object.hashCode
+     * P43
+     * 
+     * @author wangfei
+     * @param o
+     * @return
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object o) {
+        Chord c = (Chord) o;
+        if (o == null) {
+            return false;
+        }
+        return c.getRootNote().equals(this.getRootNote()) && this.getClass().equals(o.getClass());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getClass().hashCode() + this.getRootNote().hashCode();
     }
 
     /**

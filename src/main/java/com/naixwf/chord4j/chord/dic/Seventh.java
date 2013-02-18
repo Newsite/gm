@@ -9,23 +9,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 三和弦
+ * 七和弦
  * 
  * @author wangfei
  * @created 2013-1-30
  * 
  * @version 1.0
  */
-public abstract class Triads extends Chord {
+public abstract class Seventh extends Chord {
+
+    @SuppressWarnings("unused")
+    private static final Logger logger = LoggerFactory.getLogger(Seventh.class);
+
     /**
      * @param root
      */
-    public Triads(Note root) {
+    protected Seventh(Note root) {
         super(root);
     }
-
-    @SuppressWarnings("unused")
-    private static final Logger logger = LoggerFactory.getLogger(Triads.class);
 
     /**
      * @author wangfei
@@ -34,6 +35,6 @@ public abstract class Triads extends Chord {
      */
     @Override
     protected Integer getNoteNum() {
-        return 3;
+        return 4;
     }
 }

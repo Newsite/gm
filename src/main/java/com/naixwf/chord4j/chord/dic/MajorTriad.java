@@ -19,16 +19,16 @@ import org.slf4j.LoggerFactory;
  * 
  * @version 1.0
  */
-public class MajorTriads extends Triads {
+public class MajorTriad extends Triad {
     /**
      * @param root
      */
-    public MajorTriads(Note root) {
+    public MajorTriad(Note root) {
         super(root);
     }
 
     @SuppressWarnings("unused")
-    private static final Logger logger = LoggerFactory.getLogger(MajorTriads.class);
+    private static final Logger logger = LoggerFactory.getLogger(MajorTriad.class);
 
     /**
      * @author wangfei

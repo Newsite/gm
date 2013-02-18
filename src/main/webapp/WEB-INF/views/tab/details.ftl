@@ -42,8 +42,14 @@
 		</div>
 		<div class="row">
 			<div class="panel">
-			<h6 align="center">和弦图解</h6>
-			<img src="${request.getContextPath()}/static/images/chord_ex.png"/>
+				<h6 align="center">和弦图解</h6>
+				<#if chordList??>
+					<ul class="block-grid four-up">
+					<#list chordList as chord>
+						<li><a>${chord.stringName}</a>[${chord}]</li>
+					</#list>
+					</ul>
+				</#if>
 			</div>
 		</div>
 	</div>
