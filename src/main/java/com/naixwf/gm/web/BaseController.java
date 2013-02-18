@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 
+import com.naixwf.chord4j.chord.dic.Note;
 import com.naixwf.chord4j.chord.dic.Pitch;
 import com.naixwf.gm.constant.SearchTypeDef;
 
@@ -45,10 +46,11 @@ public class BaseController {
      */
     protected void putTransposer(String keyStart, Model model) {
         List<String> keyList = new ArrayList<String>();
-        Pitch p = new Pitch(keyStart);
+        Note n = Note.getByName(keyStart);
         for (int i = 0; i < 12; i++) {
-            keyList.add(p.getName());
-            p = p.add(1);
+            logger.debug(keyStart);
+            keyList.add(n.getName());
+            n = n.add(1);
         }
         model.addAttribute("keyList", keyList);
     }

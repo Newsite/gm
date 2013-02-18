@@ -1,4 +1,4 @@
 	<footer id="copyright">
-		<div class="row">copyright: naixwf@gmail.com</div>
+		<div class="row">© naixwf@gmail.com</div>
 	</footer>
 </html>

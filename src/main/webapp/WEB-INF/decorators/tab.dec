@@ -2,9 +2,9 @@
 <div class="contain-to-grid">
 	<nav class="top-bar">
 		<ul>
-	    	<li class="name"><h1><a href="${request.getContextPath()}">GuitarMe</a></h1></li>
-	    	<li class="divider"></li>
+	    	<li class="name"><h1><a href="${request.getContextPath()}/index">GuitarMe</a></h1></li>
 	   	 	<li class="toggle-topbar"><a href="#"></a></li>
+	   	 	<li class="divider"></li>
 	  	</ul>
 	  	<section>
 	  		<ul class="right">

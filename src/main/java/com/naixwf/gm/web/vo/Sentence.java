@@ -10,6 +10,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.naixwf.chord4j.chord.dic.Chord;
+
 /**
  * 
  * @author wangfei
@@ -21,7 +23,7 @@ public class Sentence {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(Sentence.class);
     // 和弦
-    List<String> chordList;
+    List<Chord> chordList;
     // 歌词
     String lyric;
 
@@ -29,16 +31,16 @@ public class Sentence {
      * @param asList
      * @param string
      */
-    public Sentence(List<String> chordList, String lyric) {
+    public Sentence(List<Chord> chordList, String lyric) {
         this.chordList = chordList;
         this.lyric = lyric;
     }
 
-    public List<String> getChordList() {
+    public List<Chord> getChordList() {
         return chordList;
     }
 
-    public void setChordList(List<String> chordList) {
+    public void setChordList(List<Chord> chordList) {
         this.chordList = chordList;
     }
 

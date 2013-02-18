@@ -14,7 +14,7 @@ package com.naixwf.chord4j.chord.dic;
  * @version 1.0
  */
 public enum ToneMarker {
-    NONE(0, ' '), SHARP(1, '#'), FLAT(-1, 'b');
+    NONE(0, ' '), SHARP(1, '♯'), FLAT(-1, 'b');
     private int index;
     private char name;
 

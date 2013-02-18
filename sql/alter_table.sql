@@ -31,3 +31,4 @@ create table tab_txt(
 `last_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文本谱';
 -- added by wangfei @2013-01-08
+

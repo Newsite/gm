@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.naixwf.chord4j.chord.dic.Note;
 import com.naixwf.chord4j.chord.dic.Pitch;
 import com.naixwf.gm.domain.TabTxt;
 import com.naixwf.gm.exception.InvalidParamException;
@@ -51,26 +52,32 @@ public class TabController extends BaseController {
     @RequestMapping("/details")
     public String details(Integer tabId, Integer offset, Model model) {
         if (offset != null && (offset < 0 || offset > 11)) {
-            throw new InvalidParamException("pitchOffset必须在0-11之间");
+            throw new InvalidParamException("offset必须在0-11之间");
         }
+
         TabTxt tab = tabTxtService.findById(tabId);
+        tab.setKeyOrigin(Note.getByName(tab.getKeyOrigin()).getName());
+        
+        // 变调器
         putTransposer(tab.getKeyChosen(), model);
 
         TabContentVo content = TabUtil.jsonToTabContent(tab.getContent());
+
         if (offset != null) {// 处理转调
             content.transpose(offset);
-            Pitch pitch = new Pitch(tab.getKeyChosen());
-            tab.setKeyChosen(pitch.add(offset).getName());
+            Note note = Note.getByName(tab.getKeyChosen());
+            tab.setKeyChosen(note.add(offset).getName());
         } else {
             offset = 0;
         }
-        model.addAttribute("offset",offset);
-        
+        model.addAttribute("offset", offset);
+
         tab.setContentVo(content);
         model.addAttribute("tab", tab);
 
         putSearchType2Model(model);
 
+        // TODO 和弦转换图
         return "tab/details";
     }
 

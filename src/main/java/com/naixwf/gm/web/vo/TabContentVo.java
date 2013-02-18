@@ -6,14 +6,13 @@
 package com.naixwf.gm.web.vo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.naixwf.chord4j.chord.dic.Pitch;
-import com.naixwf.chord4j.chord.dic.ToneMarker;
+import com.naixwf.chord4j.chord.dic.Chord;
+import com.naixwf.chord4j.chord.dic.Note;
 import com.naixwf.gm.util.TabUtil;
 
 /**
@@ -37,9 +36,12 @@ public class TabContentVo extends ArrayList<Sentence> {
      * @param to
      */
     public TabContentVo transpose(String from, String to) {
-        Pitch p1 = new Pitch(from);
-        Pitch p2 = new Pitch(to);
-        int offset = p2.getValue() - p1.getValue();
+        Note n1 = Note.getByName(from);
+        Note n2 = Note.getByName(to);
+        int offset = n2.getIndex() - n1.getIndex();
+        if (offset < 0) {
+            offset += 12;
+        }
         return transpose(offset);
     }
 
@@ -54,9 +56,9 @@ public class TabContentVo extends ArrayList<Sentence> {
 
     public TabContentVo transpose(int offset) {
         for (Sentence s : this) {
-            List<String> chordList = s.getChordList();
+            List<Chord> chordList = s.getChordList();
             for (int i = 0, size = chordList.size(); i < size; i++) {
-                String chord = chordList.get(i);
+                Chord chord = chordList.get(i);
                 chord = TabUtil.transferChord(chord, offset);
                 chordList.set(i, chord);
             }

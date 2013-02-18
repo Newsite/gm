@@ -5,12 +5,15 @@
  */
 package com.naixwf.gm.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.naixwf.chord4j.chord.dic.Chord;
+import com.naixwf.chord4j.chord.dic.Note;
 import com.naixwf.chord4j.chord.dic.Pitch;
 import com.naixwf.chord4j.chord.dic.ToneMarker;
 import com.naixwf.gm.web.vo.Sentence;
@@ -31,8 +34,8 @@ public class TabUtil {
         List<?> tmp = JsonUtil.toList(json);
         for (Object o : tmp) {
             Map<String, Object> map = (Map<String, Object>) o;
-            // logger.debug(o.toString());
-            List<String> chordList = (List<String>) map.get("chordList");
+            List<String> chordStrList = (List<String>) map.get("chordList");
+            List<Chord> chordList = strList2ChordList(chordStrList);
             String lyric = (String) map.get("lyric");
             Sentence s = new Sentence(chordList, lyric);
             vo.add(s);
@@ -41,46 +44,34 @@ public class TabUtil {
     }
 
     /**
+     * 将字符串列表转换为和弦列表
+     * 
+     * @author wangfei
+     * @param str
+     * @return
+     */
+    private static List<Chord> strList2ChordList(List<String> str) {
+        List<Chord> list = new ArrayList<Chord>();
+        if (str != null) {
+            for (String s : str) {
+                list.add(Chord.string2Chord(s));
+            }
+        }
+        return list;
+    }
+
+   
+
+    /**
      * @author wangfei
      * @param chord
      * @param offset
      * @return
      */
-    public static String transferChord(String chord, int offset) {
-        Pitch x = null;// 最终生成的音高，name被用于替换大些字母
-        String pitchName = null;// 大写字母
-        for (int j = 0, l = chord.length(); j < l; j++) {
-            char tmp = chord.charAt(j);
-            if (tmp >= 'A' && tmp <= 'Z') {// 找到大写字母
-                pitchName = tmp + "";
-                if (chord.contains(ToneMarker.SHARP.getName() + "")) {
-                    pitchName = ToneMarker.SHARP.getName() + "" + tmp;
-                }
-                if (chord.contains(ToneMarker.FLAT.getName() + "")) {
-                    pitchName = ToneMarker.FLAT.getName() + "" + tmp;
-                }
-                x = new Pitch(pitchName);
-                // logger.debug("before:" + x.getName());
-                x = x.add(offset);
-                // logger.debug("after:" + x.getName());
-                break;
-            }
-        }
-        if (x == null) {
-            logger.info(chord + "+" + offset);
-        }
-
-        chord = chord.replaceAll(ToneMarker.FLAT.getName() + "", "");
-        // logger.debug("去掉flat:" + chord);
-
-        chord = chord.replaceAll(ToneMarker.SHARP.getName() + "", "");
-        // logger.debug("去掉sharp:" + chord);
-
-        chord = chord.replaceAll(pitchName, x.getName());
-        // logger.debug(pitchName + ":" + x.getName());
-
-        // logger.debug("after:" + chord);
-        // logger.debug("");
-        return chord;
+    public static Chord transferChord(final Chord chord, int offset) {
+        Note root = chord.getRootNote();
+        Note newRoot = root.add(offset);
+        Chord newChord = Chord.newChord(newRoot,chord.getPostfix());
+        return newChord;
     }
 }

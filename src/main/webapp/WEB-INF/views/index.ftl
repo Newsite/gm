@@ -9,6 +9,32 @@
 	    	<li class="name"><h1><a href="${request.getContextPath()}">GuitarMe</a></h1></li>
 	   	 	<li class="toggle-topbar"><a href="#"></a></li>
 	  	</ul>
+	  	<section>
+	  		<ul class="left">
+	  			<li class="divider"></li>
+	  			<li class="has-dropdown">
+	  				<a class="active" href="">找谱</a>
+	  				<ul class="dropdown">
+	  					<li><label>文本谱</label></li>
+	  					<li><a href="#">新谱</a></li>
+	  					<li><a href="#">热谱</a></li>
+	  					<li class="divider"></li>
+	  					<li><label>歌手</label></li>
+	  					<li><a href="#">热门歌手</a></li>
+	  					<li><a href="#">歌手列表</a></li>
+	  				</ul>
+	  			</li>
+	  			<li class="divider"></li>
+	  			<li class="has-dropdown">
+	  				<a href="">乐理</a>
+	  				<ul class="dropdown">
+	  					<li><a href="#">基础乐理</a></li>
+	  					<li><a href="#">吉他学习</a></li>
+	  				</ul>
+	  			</li>
+	  			<li class="divider"></li>
+	  		</ul>
+	  	</section>
 	</nav>
 </div>
 <header id="index_top">
@@ -32,10 +58,7 @@
 		<div class="three columns"></div>
 	</div>
 </header>
-	<div class="row collapse" id="index_main">
-		<div class="twelve columns"></div>
-		<div class="one columns"></div>
-		<div class="ten columns">
+	<div class="row" id="index_main">
 				<table class="six columns">
 					<caption><kbd>热门曲谱</kbd></caption>
 						<tr>
@@ -62,8 +85,6 @@
 						</tr>
 						</#list>
 				</table>
-		</div>
-		<div class="one columns"></div>
 	</div>
 	<script type="text/javascript">
    $(window).load(function() {

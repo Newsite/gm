@@ -16,7 +16,7 @@
 				<#list tab.contentVo as s>
 					<dt>
 						<#list s.chordList as chord>
-							<a>${chord}</a>
+							<a>${chord.getStringName()}</a>
 							&nbsp;&nbsp; 
 						</#list>
 					</dt>
