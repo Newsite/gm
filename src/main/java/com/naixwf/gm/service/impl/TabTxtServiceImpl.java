@@ -9,8 +9,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import net.bull.javamelody.MonitoredWithSpring;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -28,7 +26,6 @@ import com.naixwf.gm.util.Page;
  * 
  * @version 1.0
  */
-@MonitoredWithSpring
 @Service
 public class TabTxtServiceImpl implements TabTxtService {
     @SuppressWarnings("unused")

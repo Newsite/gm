@@ -32,3 +32,17 @@ create table tab_txt(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文本谱';
 -- added by wangfei @2013-01-08
 
+create table chord_fret(
+`id` int(11) not null auto_increment primary key,
+`name` varchar(64) not null comment '和弦名称',
+`chord_id` int(11) not null comment '和弦id',
+`root_note` varchar(4) not null comment '根音',
+`position` int(11) not null comment '把位',
+`fret_numbers` varchar(64) not null comment '指板数值序列 从6弦到1弦',
+`finger` varchar(64) not null comment '指法序列 从6弦到1弦',
+`comment` varchar(128) comment '备注'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '和弦按法';
+-- added by wangfei@2013-02-21
+
+
+

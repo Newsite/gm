@@ -8,7 +8,7 @@ package com.naixwf.chord4j.guitar;
 import java.util.Arrays;
 import java.util.List;
 
-import com.naixwf.chord4j.chord.dic.Note;
+import com.naixwf.chord4j.chord.Note;
 
 /**
  * 

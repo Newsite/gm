@@ -56,7 +56,42 @@
 :: index
 :: tab/details
 */
+.chord-cell{z-index:4;width:9px;height:9px;position: absolute;float:left;}
 
+.s6{left:-2px;}
+.s5{left:9px;}
+.s4{left:20px;}
+.s3{left:31px;}
+.s2{left:42px;}
+.s1{left:53px;}
+
+.f1{top:0px;}
+.f2{top:15px;}
+.f3{top:30px;}
+.f4{top:45px;}
+.f5{top:60px;}
+.f6{top:75px;}
+
+.chord-string-group{
+	background-image:url(../images/chord/fretboard.gif);
+	background-repeat: no-repeat;
+	width:57px;
+	height:100px;
+	position:relative;
+}
+.chord-name{
+	width:57px;
+}
+
+.chord-main{
+width:57px;
+}
+
+
+.chord-fret-base{
+height:100px;
+width:10px;
+}
 
 /* -----------------------------------------
    Shared Styles
@@ -69,6 +104,12 @@ footer {
 	background: #3F3F3F;
 	color: white;
 	padding: 11px 0;
+}
+/* -----------------------------------------
+   chord-chart
+----------------------------------------- */
+fretboard{
+	
 }
 
 

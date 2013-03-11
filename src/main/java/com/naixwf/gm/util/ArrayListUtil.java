@@ -5,6 +5,7 @@
  */
 package com.naixwf.gm.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,7 +20,6 @@ import org.slf4j.LoggerFactory;
  * @version 1.0
  */
 public class ArrayListUtil {
-    @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(ArrayListUtil.class);
 
     /**
@@ -44,5 +44,44 @@ public class ArrayListUtil {
                 dest.add((T) o);
             }
         }
+    }
+
+    /**
+     * 字符串转数字列表
+     * 
+     * @author wangfei
+     * @param fretNumbers
+     * @return
+     */
+    public static List<Integer> string2IntegerList(String fretNumbers) {
+        String[] fretNumberAry = fretNumbers.split(",");
+        List<Integer> list = new ArrayList<Integer>();
+        for (String s : fretNumberAry) {
+            try {
+                list.add(Integer.parseInt(s));
+            } catch (Exception e) {
+                logger.info("fretNumbers contains NAN:" + fretNumbers, e);
+                return null;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 将列表拼成字符串
+     * 
+     * @author wangfei
+     * @param string
+     * @return
+     */
+    public static String list2String(List<? extends Object> list, String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, size = list.size(); i < size; i++) {
+            if (i > 0) {
+                sb.append(s);
+            }
+            sb.append(list.get(i));
+        }
+        return sb.toString();
     }
 }

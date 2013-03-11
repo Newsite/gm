@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 
-import com.naixwf.chord4j.chord.dic.Note;
+import com.naixwf.chord4j.chord.Note;
 import com.naixwf.gm.constant.SearchTypeDef;
 
 /**

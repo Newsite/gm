@@ -16,10 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.naixwf.chord4j.chord.dic.Chord;
-import com.naixwf.chord4j.chord.dic.Note;
+import com.naixwf.chord4j.chord.Chord;
+import com.naixwf.chord4j.chord.Note;
+import com.naixwf.chord4j.guitar.ChordChartVo;
 import com.naixwf.gm.domain.TabTxt;
 import com.naixwf.gm.exception.InvalidParamException;
+import com.naixwf.gm.service.ChordFretService;
 import com.naixwf.gm.service.TabTxtService;
 import com.naixwf.gm.util.Page;
 import com.naixwf.gm.util.TabUtil;
@@ -40,6 +42,8 @@ public class TabController extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(TabController.class);
     @Resource
     private TabTxtService tabTxtService;
+    @Resource
+    private ChordFretService chordFretService;
 
     /**
      * 具体曲谱
@@ -77,9 +81,13 @@ public class TabController extends BaseController {
 
         putSearchType2Model(model);
 
-        //和弦转换图
+        // 和弦转换图
         List<Chord> chordList = content.getChordList();
-        model.addAttribute("chordList", chordList);
+        // 得到第一个转位图
+        List<ChordChartVo> chordChartList = chordFretService
+                .listFirstChordFretByChordList(chordList);
+
+        model.addAttribute("chordChartList", chordChartList);
         return "tab/details";
     }
 
@@ -101,4 +109,15 @@ public class TabController extends BaseController {
 
         return "tab/list";
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String searchTab() {
+        List<TabTxt> list = tabTxtService.listAll(null);
+        for (TabTxt tab : list) {
+            TabContentVo content = TabUtil.jsonToTabContent(tab.getContent());
+            tab.setContentVo(content);
+        }
+        return "tab/list";
+    }
+
 }

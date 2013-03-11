@@ -5,9 +5,6 @@
  */
 package com.naixwf.gm.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -18,7 +15,6 @@ import com.naixwf.gm.domain.Jitapu;
 import com.naixwf.gm.domain.Tab;
 import com.naixwf.gm.service.TabService;
 import com.naixwf.gm.service.TabTransService;
-import com.naixwf.gm.util.StringUtil;
 
 /**
  * 

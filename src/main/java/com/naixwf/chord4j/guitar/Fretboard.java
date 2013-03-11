@@ -11,9 +11,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.naixwf.chord4j.chord.dic.Chord;
-import com.naixwf.chord4j.chord.dic.MajorTriad;
-import com.naixwf.chord4j.chord.dic.Note;
+import com.naixwf.chord4j.chord.Chord;
+import com.naixwf.chord4j.chord.MajorTriad;
+import com.naixwf.chord4j.chord.Note;
 
 /**
  * 指板
@@ -29,7 +29,7 @@ public class Fretboard {
     private static final Tuning DEFULT_TUNNING = Tuning.STANDARD;
     private static int MAX_FRET = 20;// 最高品位
     private static int MAX_OFFSET = 5;// 一个和弦最大跨几个品格
-    private static int NO_FRET = -1;// 某弦为和弦外音
+    public static int NO_FRET = -1;// 某弦为和弦外音
 
     /**
      * 获取某弦某品的音名

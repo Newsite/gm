@@ -8,9 +8,10 @@ package com.naixwf.gm.web;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -20,10 +21,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.naixwf.chord4j.chord.Chord;
+import com.naixwf.chord4j.chord.ChordCategory;
+import com.naixwf.chord4j.chord.Note;
+import com.naixwf.gm.crawl.Ijita;
 import com.naixwf.gm.dao.TabTxtDao;
+import com.naixwf.gm.domain.ChordFret;
 import com.naixwf.gm.domain.TabTxt;
+import com.naixwf.gm.service.ChordFretService;
 import com.naixwf.gm.util.JsonUtil;
-import com.naixwf.gm.web.vo.Sentence;
 import com.naixwf.gm.web.vo.TabContentVo;
 
 /**
@@ -39,6 +45,32 @@ public class TransferController {
     private static final Logger logger = LoggerFactory.getLogger(TransferController.class);
     @Resource
     private TabTxtDao tabTxtDao;
+    @Resource
+    private ChordFretService chordFretService;
+
+    @RequestMapping("/transfer/chord")
+    public @ResponseBody
+    String chord() {
+        Ijita ijita = new Ijita();
+        Set<Chord> chordCrawled = new HashSet<Chord>();
+
+        for (ChordCategory cc : ChordCategory.values()) {
+            for (Note n : Note.values()) {
+                Chord chord = Chord.newChord(n, cc.getMain());
+
+                if (chordCrawled.contains(chord)) {
+                    continue;
+                }
+                logger.debug("start crawl " + chord.getName());
+                chordCrawled.add(chord);
+                List<ChordFret> chordFrets = ijita.crawlFretFromIjita(chord);
+                if (chordFrets != null) {
+                    chordFretService.insert(chordFrets);
+                }
+            }
+        }
+        return "success";
+    }
 
     @RequestMapping("/transfer/ijita")
     public @ResponseBody
