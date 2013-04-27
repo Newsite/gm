@@ -6,7 +6,8 @@
 <body>
   <div class="container">
   	<div class="row">
-		<table class="twelve columns">
+  		<br/>
+		<table class="eight columns centered">
 			<tr>
 				<th>id</th>
 				<th>曲名</th>
@@ -22,7 +23,7 @@
 		</table>
 	</div>
 	<div class="row pagination-centered">
-		<@foundation.pagination macro_id="pagination" url='${request.getContextPath()}/tab/list' current=page.pageNo total=page.totalPageCount/>
+		<@foundation.pagination macro_id="pagination" url='${request.getContextPath()}/tab/list?keyword=${keyword!}' current=page.pageNo total=page.totalPageCount/>
 	</div> 
   </div>
 </body>

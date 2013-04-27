@@ -7,9 +7,7 @@ package com.naixwf.gm.crawl;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -22,7 +20,7 @@ import com.naixwf.chord4j.chord.Chord;
 import com.naixwf.chord4j.chord.ChordCategory;
 import com.naixwf.chord4j.chord.Note;
 import com.naixwf.gm.domain.ChordFret;
-import com.naixwf.gm.util.ArrayListUtil;
+import com.naixwf.core.util.ArrayListUtil;
 
 /**
  * 
@@ -83,6 +81,7 @@ public class Ijita extends BaseCrawl {
 
             String[] chordList = result.split("desenhaAcorde");
             for (int i = 1; i < chordList.length; i++) {
+
                 ChordFret chordFret = new ChordFret();
                 chordFret.setChordId(chord.getChordId());
                 chordFret.setComment("from ijita 20130226");
@@ -113,17 +112,26 @@ public class Ijita extends BaseCrawl {
                 }
                 // 指板
                 chordFret.setPosition(min);
+
                 for (int x = 0; x < 6; x++) {
-                    Integer t = integerList.get(x);
+                    Integer t = null;
+                    if (x > integerList.size() - 1) {
+                        integerList.add(-1);
+                        continue;
+                    } else {
+                        t = integerList.get(x);
+                    }
+
                     if (min > 0 && t != -1) {
                         integerList.set(x, t - min + 1);
                     }
-
                 }
                 chordFret.setFretNumbers(ArrayListUtil.list2String(integerList, ","));
                 list.add(chordFret);
             }
         } catch (Exception e) {
+
+            e.printStackTrace();
             logger.debug(chord.getName() + ":无法解析:" + e.getMessage());
             return null;
         }
@@ -155,10 +163,9 @@ public class Ijita extends BaseCrawl {
     }
 
     public static void main(String[] args) {
-        Chord test = Chord.newChord(Note.C, ChordCategory.MAJOR_TRIAD.getMain());
+        Chord test = Chord.newChord(Note.E, ChordCategory.MAJOR_TRIAD.getMain());
 
         Ijita ijita = new Ijita();
-        Set<Chord> chordCrawled = new HashSet<Chord>();
         List<ChordFret> chordFrets = ijita.crawlFretFromIjita(test);
         if (chordFrets != null) {
             for (ChordFret chordFret : chordFrets) {

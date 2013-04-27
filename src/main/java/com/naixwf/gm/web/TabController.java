@@ -106,6 +106,8 @@ public class TabController extends BaseController {
         model.addAttribute("list", list);
 
         putSearchType2Model(model);
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
 
         return "tab/list";
     }

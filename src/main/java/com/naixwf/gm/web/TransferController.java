@@ -29,7 +29,7 @@ import com.naixwf.gm.dao.TabTxtDao;
 import com.naixwf.gm.domain.ChordFret;
 import com.naixwf.gm.domain.TabTxt;
 import com.naixwf.gm.service.ChordFretService;
-import com.naixwf.gm.util.JsonUtil;
+import com.naixwf.core.util.JsonUtil;
 import com.naixwf.gm.web.vo.TabContentVo;
 
 /**
@@ -79,6 +79,13 @@ public class TransferController {
         for (TabTxt tab : tabList) {
             tabTxtDao.insert(tab);
         }
+        return "success";
+    }
+
+    @RequestMapping("/transfer/jitapu")
+    public @ResponseBody
+    String jitapu() {
+        
         return "success";
     }
 

@@ -8,6 +8,7 @@ package com.naixwf.gm.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.naixwf.core.dao.HibernateBaseDao;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ import com.naixwf.gm.domain.ChordFret;
  * @version 1.0
  */
 @Repository
-public class ChordFretDao extends BaseDao<ChordFret> {
+public class ChordFretDao extends HibernateBaseDao<ChordFret> {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(ChordFretDao.class);
 

@@ -1,7 +1,0 @@
-<#include "header.ftl">
-</head>
-<body>
-<div class="main">
-${body}
-</div>
-<#include "footer.ftl">

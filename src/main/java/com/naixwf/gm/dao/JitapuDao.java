@@ -5,6 +5,7 @@
  */
 package com.naixwf.gm.dao;
 
+import com.naixwf.core.dao.HibernateBaseDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ import com.naixwf.gm.domain.Jitapu;
  * @version 1.0
  */
 @Repository
-public class JitapuDao extends BaseDao<Jitapu> {
+public class JitapuDao extends HibernateBaseDao<Jitapu> {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(JitapuDao.class);
 }

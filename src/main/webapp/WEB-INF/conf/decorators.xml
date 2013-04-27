@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/WEB-INF/decorators">
-	<decorator name="tab" page="tab.dec">
-		<pattern>/tab/*</pattern>
-	</decorator>
-	<decorator name="exam" page="exam.dec">
-		<pattern>/exam/*</pattern>
-	</decorator>
 	<decorator name="common" page="common.dec">
 		<pattern>/*</pattern>
 	</decorator>

@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.naixwf.chord4j.chord.Chord;
 import com.naixwf.gm.domain.ChordFret;
-import com.naixwf.gm.util.ArrayListUtil;
+import com.naixwf.core.util.ArrayListUtil;
 
 /**
  * 和弦图示vo

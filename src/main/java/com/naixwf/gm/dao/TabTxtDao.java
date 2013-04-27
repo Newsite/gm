@@ -7,6 +7,7 @@ package com.naixwf.gm.dao;
 
 import java.util.List;
 
+import com.naixwf.core.dao.HibernateBaseDao;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -25,7 +26,7 @@ import com.naixwf.gm.util.Page;
  * @version 1.0
  */
 @Repository
-public class TabTxtDao extends BaseDao<TabTxt> {
+public class TabTxtDao extends HibernateBaseDao<TabTxt> {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(TabTxtDao.class);
 

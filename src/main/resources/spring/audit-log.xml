@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!--<aop:config>-->
+        <!--<aop:aspect ref="auditLogAspect">-->
+            <!--<aop:after method="afterDaoMethod"-->
+                       <!--pointcut="execution(* com.naixwf.gm.dao.*.*(..))"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+    <bean id="auditLogAspect" class="com.naixwf.core.auditlog.AuditLogAspect">
+        <property name="domainPackageName" value="com.naixwf.gm.domain"/>
+        <property name="auditLogService" ref="auditLogService"/>
+    </bean>
+    <!--读写log的service-->
+    <bean name="auditLogService" class="com.naixwf.core.auditlog.service.impl.DefaultAuditLogService"/>
+</beans>

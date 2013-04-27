@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<import resource="classpath:spring/core.xml" />
+	<import resource="core.xml" />
 	<!-- mvc相关 -->
 	<import resource="webmvc.xml" />
 
 	<import resource="dao.xml" />
+
+    <import resource="audit-log.xml" />
 </beans>

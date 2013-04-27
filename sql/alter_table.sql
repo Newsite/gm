@@ -44,5 +44,42 @@ create table chord_fret(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '和弦按法';
 -- added by wangfei@2013-02-21
 
+CREATE TABLE `audit_log` (
+  `id` varchar(36) NOT NULL,
+  `access_log_id` varchar(255) NOT NULL COMMENT '访问日志id，可能为可能为空',
+  `entity_name` varchar(255) NOT NULL COMMENT 'domain类型',
+  `entity_id` varchar(255) NOT NULL COMMENT 'domain 主键',
+  `field_name`varchar(255) NOT NULL COMMENT '字段名称',
+  `old_value` varchar(2048)  NOT NULL COMMENT '字段旧值',
+  `new_value` varchar(2048) NOT NULL COMMENT '字段新值',
+  `modifier_id` integer NOT NULL COMMENT '操作者id',
+  `create_time` datetime  NOT NULL COMMENT '插入时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='业务审计日志';
 
 
+
+create table social_connection (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    userId varchar(255) not null,
+    providerId varchar(255) not null,
+    providerUserId varchar(255),
+    rank int not null,
+    displayName varchar(255),
+    profileUrl varchar(512),
+    imageUrl varchar(512),
+    accessToken varchar(255) not null,
+    secret varchar(255),
+    refreshToken varchar(255),
+    expireTime bigint,
+    create_time datetime not null,
+    PRIMARY KEY (id),
+    unique key (userId, providerId, providerUserId)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='spring social connections';
+create unique index user_connect_rank on social_connection(userId, providerId, rank);
+--added by wangfei@2013-04-24
+
+create table account(
+    id varchar(64) NOT NULL primary key COMMENT 'userId',
+    `name` varchar(64) NOT NULL COMMENT '用户名'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='gm 用户';
