@@ -18,7 +18,7 @@
 .f5{top:138px;}
 
 .string-group{
-	background-image:url(${request.getContextPath()}/static/images/chord-grid.gif);
+	background-image:url(${rc.getContextPath()}/static/images/chord-grid.gif);
 	background-repeat: no-repeat;
 	width:146px;
 	height:166px;
@@ -75,7 +75,7 @@ height:224px;
 							<#assign fretBase=(chordChart.capo+j) />
 							<#if (fretBase==stringFret.fretNumber)>
 								<div class="chord-cell s${index} f${j}">
-									<img src="${request.getContextPath()}/static/images/${stringFret.finger}.png"/>
+									<img src="${rc.getContextPath()}/static/images/${stringFret.finger}.png"/>
 								</div>
 							</#if>
 						</#list>

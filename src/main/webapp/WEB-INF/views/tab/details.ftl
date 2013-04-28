@@ -13,7 +13,7 @@
 					<ul class="tabs">
 						<#list keyList as key>
 								<#if key_index!=offset>
-									<li><a href="${request.getContextPath()}/tab/details?tabId=${tab.id}&offset=${key_index}">${key}</a></li>
+									<li><a href="${rc.getContextPath()}/tab/details?tabId=${tab.id}&offset=${key_index}">${key}</a></li>
 								<#else>
 									<li class="active"><a>${key}</a></li>
 								</#if>

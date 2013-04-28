@@ -6,7 +6,7 @@
 <div class="contain-to-grid">
 	<nav class="top-bar">
 		<ul>
-	    	<li class="name"><h1><a href="${request.getContextPath()}">GuitarMe</a></h1></li>
+	    	<li class="name"><h1><a href="${rc.getContextPath()}">GuitarMe</a></h1></li>
 	   	 	<li class="toggle-topbar"><a href="#"></a></li>
 	  	</ul>
 	  	<section>
@@ -41,16 +41,16 @@
 	<div class="row">
 		<div class="twelve columns">
 				<div class="orbit" id="index_slider">
-					<img class="twelve columns" alt="slide_1" src="${request.getContextPath()}/static/images/demo1.jpg" />
-					<img class="twelve columns" alt="slide_2" src="${request.getContextPath()}/static/images/demo2.jpg" />
-					<img class="twelve columns" alt="slide_3" src="${request.getContextPath()}/static/images/demo3.jpg" />
+					<img class="twelve columns" alt="slide_1" src="${rc.getContextPath()}/static/images/demo1.jpg" />
+					<img class="twelve columns" alt="slide_2" src="${rc.getContextPath()}/static/images/demo2.jpg" />
+					<img class="twelve columns" alt="slide_3" src="${rc.getContextPath()}/static/images/demo3.jpg" />
 				</div>
 		</div>
 	</div>
 	<div class="row " id='index_searchbar'>
 		<div class="three columns"></div>
 		<div class="six columns " >
-			<form class="row collapse" action="${request.getContextPath()}/tab/list">
+			<form class="row collapse" action="${rc.getContextPath()}/tab/list">
 				<div class="ten columns"><input type="text" placeholder="曲名/歌手/歌词" name="keyword"/></div>
 				<div class="two columns"><input type="submit"  value="搜索" class=" button expand postfix"/></div>
 			</form>
@@ -67,7 +67,7 @@
 						</tr>
 						<#list hotTabList as tab>
 						<tr>
-							<td><a href="${request.getContextPath()}/tab/details?tabId=${tab.id?c}">${tab.name}</a></td>
+							<td><a href="${rc.getContextPath()}/tab/details?tabId=${tab.id?c}">${tab.name}</a></td>
 							<td>${tab.singer}</td>
 						</tr>
 						</#list>
@@ -80,7 +80,7 @@
 						</tr>
 						<#list lastTabList as tab>
 						<tr>
-							<td><a href="${request.getContextPath()}/tab/details?tabId=${tab.id?c}">${tab.name}</a></td>
+							<td><a href="${rc.getContextPath()}/tab/details?tabId=${tab.id?c}">${tab.name}</a></td>
 							<td>${tab.singer}</td>
 						</tr>
 						</#list>

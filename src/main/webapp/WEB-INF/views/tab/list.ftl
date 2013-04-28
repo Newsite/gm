@@ -23,7 +23,7 @@
 		</table>
 	</div>
 	<div class="row pagination-centered">
-		<@foundation.pagination macro_id="pagination" url='${request.getContextPath()}/tab/list?keyword=${keyword!}' current=page.pageNo total=page.totalPageCount/>
+		<@foundation.pagination macro_id="pagination" url='${rc.getContextPath()}/tab/list?keyword=${keyword!}' current=page.pageNo total=page.totalPageCount/>
 	</div> 
   </div>
 </body>

@@ -29,8 +29,6 @@ public class AccessLogInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object handler) throws Exception {
-        // 把request本身放入attibute以便ftl调用
-        request.setAttribute("request", request);
         // logId
         String logId = UUID.randomUUID().toString();
         // uri

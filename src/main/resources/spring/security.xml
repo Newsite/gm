@@ -9,11 +9,8 @@
     <http use-expressions="true">
         <form-login login-page="/signin"/>
         <logout logout-url="/logout" delete-cookies="JSESSIONID"/>
-
         <intercept-url pattern="/static/**" access="permitAll"/>
         <intercept-url pattern="/signin/**" access="permitAll"/>
-        <intercept-url pattern="/signup" access="permitAll"/>
-
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
     </http>
 

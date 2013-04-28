@@ -14,14 +14,14 @@
 							<#if j<6>
 								<#if (j==stringFret.fretNumber)>
 									<div class="chord-cell s${index} f${j}">
-										<!-- <img src="${request.getContextPath()}/static/images/chord/${stringFret.finger}.gif"/> -->
+										<!-- <img src="${rc.getContextPath()}/static/images/chord/${stringFret.finger}.gif"/> -->
 										●
 									</div>
 								</#if>
 							<#else>
 								<#if stringFret.status??>
 									<div class="chord-cell s${index} f6">
-										<img src="${request.getContextPath()}/static/images/chord/${stringFret.status}.gif"/>
+										<img src="${rc.getContextPath()}/static/images/chord/${stringFret.status}.gif"/>
 									</div>
 								</#if>
 							</#if>
