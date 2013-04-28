@@ -282,6 +282,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>guitarme</finalName>
+        <finalName>gm</finalName>
     </build>
 </project>
